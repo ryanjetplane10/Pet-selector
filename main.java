@@ -1,8 +1,7 @@
 /*
  * Name: Ryan R
  * Date: October 15, 2026
- * Description: Recommends a perfect pet based on the user's color, season,
- * and name.
+ * Description: Recommends a perfect pet based on the user's color, season,and name.
  */
 import java.util.Arrays;
 import java.util.Scanner;
