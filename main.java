@@ -1,52 +1,40 @@
 /*
- * Name: Ryan. R
+ * Name: Ryan R
  * Date: October 15, 2026
- * Description: Recommends a perfect pet based on the user's color, season, and name.
+ * Description: Recommends a perfect pet based on the user's color, season,
+ * and name.
  */
 import java.util.Arrays;
 import java.util.Scanner;
 
 class Main {
   public static void main(String[] args) {
-    try (Scanner input = new Scanner(System.in)) {
+    Scanner input = new Scanner(System.in);
       String name = readName(input);
       if (name == null) {
         return;
       }
 
-      String color = readOption(input,
-          "Enter your favorite color (red, blue, or green): ", "red", "blue", "green");
-      if (color == null) {
-        return;
-      }
-
-      String season = readOption(input,
-          "Enter your favorite season (winter, spring, summer, or fall): ",
-          "winter", "spring", "summer", "fall");
-      if (season == null) {
+     System.out.println( "Enter your favorite color (red, blue, or green): ");
+      String color = input.nextLine();
+      if(!(color.equals("blue") || color.equals("green")|| color.equals("red"))){
+          System.out.println("wrong input!");
+          return;
+        }
+    
+      System.out.println("Enter your favorite season (winter, spring, summer, fall):");
+      String season = input.nextLine();
+      if (!(season.equals("winter") || season.equals("spring")
+          || season.equals("summer") || season.equals("fall"))) {
+        System.out.println("wrong input!");
         return;
       }
 
       String pet = getPet(color, season, name.charAt(0));
       System.out.println("Your perfect pet is: " + pet);
-    }
   }
 
-  private static String readOption(Scanner input, String prompt, String... options) {
-    while (true) {
-      System.out.print(prompt);
-      if (!input.hasNextLine()) {
-        System.out.println("\nInput ended before all answers were provided.");
-        return null;
-      }
-
-      String answer = input.nextLine().trim().toLowerCase();
-      if (Arrays.asList(options).contains(answer)) {
-        return answer;
-      }
-      System.out.println("Please enter one of: " + String.join(", ", options) + ".");
-    }
-  }
+ 
 
   private static String readName(Scanner input) {
     while (true) {
@@ -69,8 +57,10 @@ class Main {
     boolean vowel = "aeiou".indexOf(letter) >= 0;
     boolean consonant = "bcdfghjklmnpqrstvwxyz".indexOf(letter) >= 0;
 
-    if (color.equals("red")) {
-      return vowel ? "Porcupine" : "Panda";
+    if (color.equals("red") && vowel) {
+      return "Porcupine";
+    } else if (color.equals("red")) {
+      return "Panda";
     }
 
     if (color.equals("green")) {
